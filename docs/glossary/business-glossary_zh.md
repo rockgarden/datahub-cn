@@ -2,7 +2,7 @@
 标题： 商业词汇
 ---
 
-import FeatureAvailability from '@site/src/components/FeatureAvailability'；
+import FeatureAvailability from '@site/src/components/FeatureAvailability';
 
 # 业务词汇表
 
@@ -23,20 +23,19 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability'；
 
 术语和术语组都允许您添加文档和唯一所有者。
 
-对于词汇表术语，您还可以在 “**Related Terms**”选项卡中建立不同术语之间的关系。您可以在这里创建包含和继承关系。最后，你可以在 “**Related Entities**”选项卡中查看已标记术语的所有实体。
+对于词汇表术语，您还可以在 **Related Terms** 选项卡中建立不同术语之间的关系。您可以在这里创建包含和继承关系。最后，你可以在  **Related Entities** 选项卡中查看已标记术语的所有实体。
 
 ## 进入词汇表
 
-要查看业务词汇表，用户必须拥有名为 “Manage Glossaries” 的平台权限，该权限可通过创建新的平台[策略](.../authorization/policies.md)授予。
+要查看业务词汇表，用户必须拥有名为 Manage Glossaries 的平台权限，该权限可通过创建新的平台[策略](../authorization/policies.md)授予。
 
-获得该权限后，您可以点击页面顶部名为 “**Govern**”的下拉菜单，然后点击 “**Glossary**”来访问您的词汇表：
+获得该权限后，您可以点击页面顶部名为 **Govern**的下拉菜单，然后点击 **Glossary**来访问您的词汇表：
 
 <p align="center">
   <img width="100%"  src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/glossary-button.png"/>
 </p>
 
 现在您已进入术语表的根目录，应该可以看到所有术语和术语组，但没有为其分配父级。您还应该注意到左侧有一个层次导航器，可以轻松查看词汇表的结构！
-
 
 <p align=“center”>
   <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/root-glossary.png"/>
@@ -78,7 +77,7 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability'；
   <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/move-term-button.png"/>
 </p>
 
-这将打开一个模态，您可以在其中浏览词汇表，找到所需的术语组。
+这将打开一个模态(modal)，您可以在其中浏览词汇表，找到所需的术语组。
 
 <p align=“center”>
   <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/move-term-modal.png"/>
@@ -102,7 +101,7 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability'；
   <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/add-term-to-entity.png"/>
 </p>
 
-在弹出的模态中，您可以通过以下两种方式之一选择您关心的术语：
+在弹出的模态(modal)中，您可以通过以下两种方式之一选择您关心的术语：
 
 - 在输入框中按名称搜索术语
 - 通过点击输入后出现的术语表下拉菜单进行导航
@@ -125,11 +124,11 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability'；
 
 要使用 Git 管理词汇表，您可以在文件中定义词汇表，然后使用 DataHub CLI 将其摄取到 DataHub 中。
 将其摄入 DataHub（例如，在 `git commit` 钩子上）。有关
-词汇表文件格式以及如何将其摄取到 DataHub 的详细信息，请查看 [Business Glossary](../generated/ingestion/sources/business-glossary.md) 源指南。
+词汇表文件格式以及如何将其摄取到 DataHub 的详细信息，请查看 [Business Glossary](https://datahubproject.io/docs/generated/ingestion/sources/business-glossary) 源指南。
 
 ## 关于词汇术语关系
 
-DataHub 支持单个词汇表术语之间的 2 种不同关系： **Inherits From***和**Contains**。
+DataHub 支持单个词汇表术语之间的 2 种不同关系： **Inherits From** 和 **Contains** 。
 
 当一个术语是另一个术语的上集(superset)或包含(consists)另一个术语时，**Contains** 可用来关联两个术语表术语。
 
@@ -153,16 +152,16 @@ DataHub 支持单个词汇表术语之间的 2 种不同关系： **Inherits Fro
 
 ### 图形QL
 
-- [addTerms](../../graphql/mutations.md#addterm)
-- [addTerms](../../graphql/mutations.md#addterms)
-- [batchAddTerms](../../graphql/mutations.md#batchaddterms)
-- [removeTerm](../../graphql/mutations.md#removeterm)
-- [batchRemoveTerms](../../graphql/mutations.md#batchremoveterms)
-- [createGlossaryTerm](../../graphql/mutations.md#createglossaryterm)
-- [createGlossaryNode](../../graphql/mutations.md#createglossarynode) (术语组)
+- [ ] [addTerms](../../graphql/mutations.md#addterm)
+- [ ] [addTerms](../../graphql/mutations.md#addterms)
+- [ ] [batchAddTerms](../../graphql/mutations.md#batchaddterms)
+- [ ] [removeTerm](../../graphql/mutations.md#removeterm)
+- [ ] [batchRemoveTerms](../../graphql/mutations.md#batchremoveterms)
+- [ ] [createGlossaryTerm](../../graphql/mutations.md#createglossaryterm)
+- [ ] [createGlossaryNode](../../graphql/mutations.md#createglossarynode) (术语组)
 
-使用 **glossaryTerms** 属性，您可以轻松获取具有给定 URN 的实体的术语表术语。请查看 [Working with Metadata Entities](.../api/graphql/how-to-set-up-graphql.md#querying-for-glossary-terms-of-an-asset)以了解示例。
+使用 **glossaryTerms** 属性，您可以轻松获取具有给定 URN 的实体的术语表术语。请查看 [Working with Metadata Entities](../api/graphql/how-to-set-up-graphql_zh.md#querying-for-glossary-terms-of-an-asset)以了解示例。
 
 ### 资源
 
-- 创建业务词汇表并在 DataHub 中使用](https://blog.datahubproject.io/crea)
+- [创建业务词汇表并在 DataHub 中使用](<https://blog.datahubproject.io/crea>)
