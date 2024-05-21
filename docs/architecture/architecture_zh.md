@@ -1,0 +1,31 @@
+# 架构概述
+
+DataHub 是第三代数据目录，可实现数据发现、协作、治理和端到端可观察性，专为现代数据堆栈而构建。DataHub 采用模型优先的理念，重点是释放不同工具和系统之间的互操作性。
+
+下图描述了 DataHub 的高级架构。
+
+<p align="center">
+  <img width="100%"  src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/datahub-architecture.png"/>
+</p>
+
+<p align="center">
+  <img width="100%"  src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/saas/DataHub-Architecture.png"/>
+</p>
+
+如需更详细地了解构成架构的组件，请查看组件。
+
+## 架构亮点
+
+DataHub 的架构有三大亮点。
+
+### 模式优先的元数据建模方法
+
+DataHub 的元数据模型使用与序列化无关的语言进行描述。同时支持 REST 和 GraphQL API。此外，DataHub 还通过 Kafka 支持基于 AVRO 的 API，以交流元数据变更并对其进行订阅。我们的路线图包括一个里程碑，即很快将支持无代码元数据模型编辑，这将使使用更加方便，同时保留类型化 API 的所有优点。有关元数据建模的信息，请访问元数据建模。
+
+### 基于流的实时元数据管理平台
+
+DataHub 的元数据基础架构是以流为导向的，因此元数据的变化可以在几秒钟内传达并反映在平台中。您还可以订阅 DataHub 元数据中发生的变化，从而构建实时元数据驱动系统。例如，您可以建立一个访问控制系统，观察到以前世界可读的数据集添加了包含 PII 的新模式字段，并锁定该数据集进行访问控制审查。
+
+### 联合元数据服务
+
+作为开源存储库的一部分，DataHub 配备了单一元数据服务 (gms)。不过，它也支持联合元数据服务，这些服务可以由不同的团队拥有和运营--事实上，这就是 LinkedIn 内部运行 DataHub 的方式。联盟服务使用 Kafka 与中央搜索索引和图进行通信，以支持全球搜索和发现，同时还能实现元数据所有权的解耦。这种架构非常适合正在实施数据网格的公司。
