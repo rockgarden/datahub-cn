@@ -70,8 +70,7 @@ Postman 是一款流行的 API 客户端，它提供了一个用于发送请求�
 
 ### 验证 + 授权
 
-一般来说，在查询 GraphQL 时，您需要提供一个 [Access Token](../../authentication/personal-access-tokens.md)，方法是
-提供包含 "Bearer" 令牌的 "Authorization"（授权）标头。头的格式如下
+一般来说，在查询 GraphQL 时，您需要提供一个 [Access Token](../../authentication/personal-access-tokens.md)，方法是提供包含 "Bearer" 令牌的 "Authorization"（授权）标头。头的格式如下：
 
 ```bash
 Authorization: Bearer <access-token>

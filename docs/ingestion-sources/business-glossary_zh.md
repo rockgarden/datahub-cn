@@ -145,22 +145,19 @@ GlossaryTerm 示例：
 
 源文件链接[在此](../../metadata-ingestion/examples/bootstrap_data/business_glossary.yml)。
 
-为术语生成自定义 ID
+## 为术语生成自定义 ID
 
 ID 通常是从词汇表术语/节点名称中推断出来的，请参见启用_auto_id 配置。但是，如果需要一个稳定的标识符，可以为术语生成一个自定义 ID。它在整个词汇表中应该是唯一的。
 
-下面是一个 ID 示例： id: "urn:li:glossaryTerm:41516e310acbfd9076fffc2c98d2d1a3"
+下面是一个 ID 示例： `id: "urn:li:glossaryTerm:41516e310acbfd9076fffc2c98d2d1a3"`
 
 注意：一旦选择了自定义 ID，就不能轻易更改。
 
-兼容性
+### 兼容性
 
 与第一版商业词汇表格式兼容。随着我们发布该格式的更新版本，源代码也将随之更新。
 
-代码坐标
+#### 代码坐标
 
-类名：datahub.ingestion.source.metadata.business_glossary.BusinessGlossaryFileSource
-在 GitHub 上浏览
-问题
-
-如果您在为 Business Glossary 配置摄取时遇到任何问题，请随时通过我们的 Slack 联系我们。
+- 类名：datahub.ingestion.source.metadata.business_glossary.BusinessGlossaryFileSource
+- 在 [GitHub](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/src/datahub/ingestion/source/metadata/business_glossary.py) 上浏览

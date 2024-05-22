@@ -1,12 +1,10 @@
 ---
-标题： 商业词汇
+标题：商业词汇
 ---
 
 import FeatureAvailability from '@site/src/components/FeatureAvailability';
 
 # 业务词汇表
-
-<FeatureAvailability/>
 
 ## 简介
 
@@ -29,17 +27,9 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability';
 
 要查看业务词汇表，用户必须拥有名为 Manage Glossaries 的平台权限，该权限可通过创建新的平台[策略](../authorization/policies.md)授予。
 
-获得该权限后，您可以点击页面顶部名为 **Govern**的下拉菜单，然后点击 **Glossary**来访问您的词汇表：
-
-<p align="center">
-  <img width="100%"  src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/glossary-button.png"/>
-</p>
+获得该权限后，您可以点击页面顶部名为 **Govern**的下拉菜单，然后点击 **Glossary**来访问您的词汇表。
 
 现在您已进入术语表的根目录，应该可以看到所有术语和术语组，但没有为其分配父级。您还应该注意到左侧有一个层次导航器，可以轻松查看词汇表的结构！
-
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/root-glossary.png"/>
-</p>
 
 ## 创建术语或术语组
 
@@ -152,13 +142,13 @@ DataHub 支持单个词汇表术语之间的 2 种不同关系： **Inherits Fro
 
 ### 图形QL
 
-- [ ] [addTerms](../../graphql/mutations.md#addterm)
-- [ ] [addTerms](../../graphql/mutations.md#addterms)
-- [ ] [batchAddTerms](../../graphql/mutations.md#batchaddterms)
-- [ ] [removeTerm](../../graphql/mutations.md#removeterm)
-- [ ] [batchRemoveTerms](../../graphql/mutations.md#batchremoveterms)
-- [ ] [createGlossaryTerm](../../graphql/mutations.md#createglossaryterm)
-- [ ] [createGlossaryNode](../../graphql/mutations.md#createglossarynode) (术语组)
+- [addTerm](https://datahubproject.io/docs/graphql/mutations#addterm)
+- [addTerms](https://datahubproject.io/docs/graphql/mutations#addterms)
+- [batchAddTerms](https://datahubproject.io/docs/graphql/mutations#batchAddTerms)
+- [removeTerm](https://datahubproject.io/docs/graphql/mutations#removeTerm)
+- [batchRemoveTerms](https://datahubproject.io/docs/graphql/mutations#batchRemoveTerms)
+- [createGlossaryTerm](https://datahubproject.io/docs/graphql/mutations#createGlossaryTerm)
+- [createGlossaryNode](https://datahubproject.io/docs/graphql/mutations#createGlossaryNode) (Term Group)
 
 使用 **glossaryTerms** 属性，您可以轻松获取具有给定 URN 的实体的术语表术语。请查看 [Working with Metadata Entities](../api/graphql/how-to-set-up-graphql_zh.md#querying-for-glossary-terms-of-an-asset)以了解示例。
 
