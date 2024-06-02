@@ -1,5 +1,5 @@
 ---
-标题：商业词汇
+标题：业务词汇
 ---
 
 import FeatureAvailability from '@site/src/components/FeatureAvailability';
@@ -114,7 +114,7 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability';
 
 要使用 Git 管理词汇表，您可以在文件中定义词汇表，然后使用 DataHub CLI 将其摄取到 DataHub 中。
 将其摄入 DataHub（例如，在 `git commit` 钩子上）。有关
-词汇表文件格式以及如何将其摄取到 DataHub 的详细信息，请查看 [Business Glossary](https://datahubproject.io/docs/generated/ingestion/sources/business-glossary) 源指南。
+词汇表文件格式以及如何将其摄取到 DataHub 的详细信息，请查看 [Business Glossary](../ingestion-sources/business-glossary_zh.md) 源指南。
 
 ## 关于词汇术语关系
 
@@ -136,11 +136,11 @@ DataHub 支持单个词汇表术语之间的 2 种不同关系： **Inherits Fro
 这样，您就可以轻松地维护包含或处理 `PII` 的所有数据资产集，同时还可以轻松地从 `PII` 术语库中添加和删除新术语。
 例如，无需重新标注单个数据资产或列。
 
-### 演示
+## 演示
 
 请访问 [我们的演示网站](https://demo.datahubproject.io/glossary) 查看词汇表示例及其工作原理！
 
-### 图形QL
+### GraphQL
 
 - [addTerm](https://datahubproject.io/docs/graphql/mutations#addterm)
 - [addTerms](https://datahubproject.io/docs/graphql/mutations#addterms)
@@ -152,6 +152,6 @@ DataHub 支持单个词汇表术语之间的 2 种不同关系： **Inherits Fro
 
 使用 **glossaryTerms** 属性，您可以轻松获取具有给定 URN 的实体的术语表术语。请查看 [Working with Metadata Entities](../api/graphql/how-to-set-up-graphql_zh.md#querying-for-glossary-terms-of-an-asset)以了解示例。
 
-### 资源
+## 资源
 
 - [创建业务词汇表并在 DataHub 中使用](<https://blog.datahubproject.io/crea>)

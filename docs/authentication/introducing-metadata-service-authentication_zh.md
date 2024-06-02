@@ -130,9 +130,6 @@ authentication:
 ```
 
 请注意，您需要在类路径上创建一个实现了 `Authenticator` 接口的类，并提供一个零参数构造函数。
-的类路径上提供零参数构造函数。
-
-我们热爱贡献！如果 Authenticator 非常有用，请随时提交 PR，贡献一个 Authenticator。
 
 ### 既然我可以向 DataHub 代理服务和 DataHub 元数据服务发出验证请求，我应该使用哪个？
 
@@ -145,7 +142,7 @@ authentication:
 有了这些变更，我们将转而建议用户将所有流量（无论是否为程序化流量）都导向到 **DataHub 前端代理**，因为目前可通过 `/api/gms`路径路由到元数据服务端点。
 此建议旨在尽量减少 DataHub 的暴露面积，使平台的安全、操作、维护和开发更简单。
 
-在实践中，这将需要迁移元数据 [ingestion recipes]（.../.../metadata-ingestion/README.md#recipes）使用的 `datahub-rest` 汇，使其指向稍有不同的主机 + 路径。
+在实践中，这将需要迁移元数据 [ingestion recipes](../../metadata-ingestion/README.md#recipes)使用的 `datahub-rest` 汇，使其指向稍有不同的主机 + 路径。
 
 通过 DataHub 前端代理的示例配方：
 
