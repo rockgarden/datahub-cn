@@ -10,16 +10,16 @@ DataHub 采用模式优先的方法为元数据建模。我们使用开源的 Pe
 
 从概念上讲，元数据使用以下抽象概念建模
 
-- 实体(Entities)：实体是元数据图中的主要节点。例如，数据集或公司用户的实例就是一个实体。实体由一个类型（如 “dataset”）、一个唯一标识符（如 “urn”）和一组元数据属性（如“documents”）组成，我们称之为方面。
-- 方面(Aspects)：方面是描述实体某一特定方面的属性集合。它们是 DataHub 中最小的原子单元。也就是说，与同一实体相关的多个方面可以独立更新。例如，DatasetProperties 包含描述数据集的属性集合。各方面可在实体间共享，例如，“Ownership”就是一个可在所有拥有所有者的实体间重复使用的方面。常见的方面包括
+- **实体(Entities)**：实体是元数据图中的主要节点。例如，数据集或公司用户的实例就是一个实体。实体由一个类型（如 “dataset”）、一个唯一标识符（如 “urn”）和一组元数据属性（如“documents”）组成，我们称之为方面。
+- **方面(Aspects)**：方面是描述实体某一特定方面的属性集合。它们是 DataHub 中最小的原子单元。也就是说，与同一实体相关的多个方面可以独立更新。例如，DatasetProperties 包含描述数据集的属性集合。各方面可在实体间共享，例如，“Ownership”就是一个可在所有拥有所有者的实体间重复使用的方面。常见的方面包括
   - [Ownership](https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/pegasus/com/linkedin/common/Ownership.pdl)： 捕捉拥有实体的用户和组。
   - [globalTags](https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/pegasus/com/linkedin/common/GlobalTags.pdl)： 捕捉与实体关联的标签的引用。
   - [glossaryTerms](https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/pegasus/com/linkedin/common/GlossaryTerms.pdl)： 捕获与实体相关的词汇表术语的引用。
   - [institutionalMemory](https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/pegasus/com/linkedin/common/InstitutionalMemory.pdl)： 捕捉与实体相关的公司内部文档（如links！）。
   - [status](https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/pegasus/com/linkedin/common/Status.pdl)： 捕捉实体的 “deletion”状态，即是否应该软删除。
   - [subTypes](https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/pegasus/com/linkedin/common/SubTypes.pdl)： 捕捉更通用实体类型的一个或多个 “sub types”。例如 “Looker Explore” 数据集、“View”数据集。特定的子类型可能意味着某个实体存在某些额外的方面。
-- 关系(Relationships)： 关系代表 2 个实体之间的命名边。它们通过 Aspects 中的外键属性和自定义注解（@Relationship）来声明。关系允许双向遍历边缘。例如，图表可以通过名为 “OwnedBy” 的关系将公司用户称为其所有者。这条边可以从图表或公司用户实例开始走过。
-- 标识符（键和瓮）(Identifiers (Keys & Urns))： 键是一种特殊类型的方面，包含唯一标识单个实体的字段。关键字可以序列化为 *Urns*，代表用于主键查找的关键字段的字符串化形式。此外，*Urns* 还可以转换回关键方面结构，从而使关键方面成为一种 “virtual” 方面。关键字方面为客户端提供了一种机制，使其可以轻松读取包含主键的字段，这些字段通常非常有用，如数据集名称、平台名称等。Urns 提供了一种友好的处理方式，通过它可以查询实体，而不需要完全实体化的结构。
+- **关系(Relationships)**：关系代表 2 个实体之间的命名边。它们通过 Aspects 中的外键属性和自定义注解（@Relationship）来声明。关系允许双向遍历边缘。例如，图表可以通过名为 “OwnedBy” 的关系将公司用户称为其所有者。这条边可以从图表或公司用户实例开始走过。
+- **标识符（键和瓮）(Identifiers(Keys & Urns))**：键是一种特殊类型的方面，包含唯一标识单个实体的字段。关键字可以序列化为 *Urns*，代表用于主键查找的关键字段的字符串化形式。此外，*Urns* 还可以转换回关键方面结构，从而使关键方面成为一种 “virtual” 方面。关键字方面为客户端提供了一种机制，使其可以轻松读取包含主键的字段，这些字段通常非常有用，如数据集名称、平台名称等。Urns 提供了一种友好的处理方式，通过它可以查询实体，而不需要完全实体化的结构。
 
 下面是一个示例图，包含 3 种实体（CorpUser、Chart、Dashboard）、2 种关系（OwnedBy、Contains）和 3 种元数据（Ownership、ChartInfo 和 DashboardInfo）。
 
@@ -29,12 +29,12 @@ DataHub 采用模式优先的方法为元数据建模。我们使用开源的 Pe
 
 DataHub 的 “core” 实体类型对组成现代数据栈的数据资产进行建模。它们包括
 
-1. **[数据平台](docs/generated/metamodel/entities/dataPlatform.md)**： 一种数据“Platform”。即参与处理、存储或可视化数据资产的外部系统。例如 MySQL、Snowflake、Redshift 和 S3。
+1. **[数据平台](docs/generated/metamodel/entities/dataPlatform.md)**：一种数据“Platform”。即参与处理、存储或可视化数据资产的外部系统。例如 MySQL、Snowflake、Redshift 和 S3。
 
-2. **[数据集](docs/generated/metamodel/entities/dataset.md)**： 数据集合。在 DataHub 上，表、视图、流、文档集和文件都被建模为 “dataset”。数据集可附加标签、所有者、链接、词汇表术语和描述。它们还可以有特定的子类型，如 “视图”、“集合”、“流”、“探索 ”等。例子包括 Postgres 表、MongoDB 集合或 S3 文件。
-3. **[图表](docs/generated/metamodel/entities/chart.md)**： 从数据集导出的单一数据可视化。一个图表可以是多个仪表盘的一部分。图表可以附加标签、所有者、链接、术语表和描述。例如超级集或 Looker 图表。
-4. **[仪表盘](docs/generated/metamodel/entities/dashboard.md)**： 用于可视化的图表集合。仪表盘可以附加标签、所有者、链接、术语表和说明。例如超级集或模式仪表盘。
-5. **[数据任务](docs/generated/metamodel/entities/dataJob.md)**（Task）： 处理数据资产的可执行任务，其中 “processing” 意味着消耗数据、产生数据或两者兼而有之。数据任务可附加标签、所有者、链接、术语表和描述。它们必须属于一个数据流。例如气流任务。
+2. **[数据集](docs/generated/metamodel/entities/dataset.md)**：数据集合。在 DataHub 上，表、视图、流、文档集和文件都被建模为 “dataset”。数据集可附加标签、所有者、链接、词汇表术语和描述。它们还可以有特定的子类型，如 “View”、“Collection”、“Stream”、“Explore”等。例子包括 Postgres 表、MongoDB 集合或 S3 文件。
+3. **[图表](docs/generated/metamodel/entities/chart.md)**：从数据集导出的单一数据可视化。一个图表可以是多个仪表盘的一部分。图表可以附加标签、所有者、链接、术语表和描述。例如超级集或 Looker 图表。
+4. **[仪表盘](docs/generated/metamodel/entities/dashboard.md)**：用于可视化的图表集合。仪表盘可以附加标签、所有者、链接、术语表和说明。例如超级集或模式仪表盘。
+5. **[数据任务](docs/generated/metamodel/entities/dataJob.md)**（Task）：处理数据资产的可执行任务，其中 “processing” 意味着消耗数据、产生数据或两者兼而有之。数据任务可附加标签、所有者、链接、术语表和描述。它们必须属于一个数据流。例如气流任务。
 6. **[数据流](docs/generated/metamodel/entities/dataFlow.md)**（Pipeline）：数据任务的可执行集合，它们之间有依赖关系，或者说是一个 DAG(Directed Acyclic Graph, 有向无环图)。数据任务可附加标签、所有者、链接、术语表和描述。例如Airflow DAG。
 
 请参阅在线文档**元数据建模/实体**部分，探索整个模型。
@@ -396,52 +396,43 @@ curl --location --request POST 'http://localhost:8080/entities?action=browse' \
 ###### 定义一个新的可聚合时间序列方面
 
 *@TimeseriesField* 和 *@TimeseriesFieldCollection* 是两个新注解，可附加到 *Timeseries aspect* 的一个字段上。
-这两个新注解可附加到 *Timeseries aspect* 的字段上，使其成为可聚合查询的一部分。这些
-注释的字段允许的聚合类型取决于字段类型和聚合类型，如
-此处]（#performing-an-aggregation-on-a-timeseries-aspect）所述。
+这两个新注解可附加到 *Timeseries aspect* 的字段上，使其成为可聚合查询的一部分。这些注释的字段允许的聚合类型取决于字段类型和聚合类型，如[此处](#在时间序列方面执行聚合)所述。
 
-- `@TimeseriesField = {}` - 此注解可用于任何类型的非集合类型字段，例如
-  原始类型和记录（请参阅 *stat*、*strStat* 和 *strArray* 字段
-  字段（见 [TestEntityProfile.pdl](https://github.com/datahub-project/datahub/blob/master/test-models/src/main/pegasus/com/datahub/test/TestEntityProfile.pdl) 中的 *stat*、*strStat* 和 *strArray* 字段）。
+- `@TimeseriesField = {}` - 此注解可用于任何类型的非集合类型字段，例如原始类型和记录（请参阅 *stat*、*strStat* 和 *strArray* 字段
+  字段（见 [TestEntityProfile.pdl](../../test-models/src/main/pegasus/com/datahub/test/TestEntityProfile.pdl) 中的 *stat*、*strStat* 和 *strArray* 字段）。
 
-- `@TimeseriesFieldCollection {“key”:“<集合项类型的关键字段名>”}`注解允许
-聚合支持（目前仅支持数组类型的集合），其中
-key "的值是集合项目类型中的字段名称，该字段将用于指定分组子句（请参阅 *userCounts* 和 *userCounts*）。
-见 [DatasetUsageStatistics.pdl](https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/pegasus/com/linkedin/dataset/DatasetUsageStatistics.pdl) 中的 *userCounts* 和 *fieldCounts* 字段）。
+- `@TimeseriesFieldCollection {"key":"<name of the key field of collection item type>"}`注解允许对集合类型的项目进行聚合（目前仅支持数组类型的集合），其中 “key ”的值是集合项目类型中字段的名称，该字段将用于指定分组子句（请参阅 [DatasetUsageStatistics.pdl](../../metadata-models/src/main/pegasus/com/linkedin/dataset/DatasetUsageStatistics.pdl) 中的 userCounts 和 fieldCounts 字段）。
 
-除了用适当的 Timeseries 注释定义新的方面外、
-实体-注册表.yml](<https://github.com/datahub-project/datahub/blob/master/metadata-models/src/main/resources/entity-registry.yml>)
-文件也需要更新。只需将新方面名称添加到相应实体的方面列表下即可，如下所示，例如 “datasetUsageStatistics”（数据集使用情况统计）。
-yaml
-entities：
+除了使用适当的 Timeseries 注释定义新方面外，还需要更新 [entity-registry.yml](../../metadata-models/src/main/resources/entity-registry.yml) 文件。如下所示，只需在相应实体的方面列表下添加新的方面名称即可，例如为方面 DatasetUsageStatistics 添加 datasetUsageStatistics。
 
-- name: 数据集
+```yaml
+entities:
+  - name: dataset
     keyAspect: datasetKey
-    aspects：
-  - datasetProfile
-  - 数据集使用统计
-
+    aspects:
+      - datasetProfile
+      - datasetUsageStatistics
 ```
 
-
 ###### 采集时间序列方面
+
 可通过 GMS REST 端点`/aspects?action=ingestProposal`或 python API 采集时间序列方面。
 
 示例 1： 使用 curl 通过 GMS REST API
 
-``shell
+```shell
 curl --location --request POST 'http://localhost:8080/aspects?action=ingestProposal' \
 --header 'X-RestLi-Protocol-Version: 2.0.0' \
---header 'Content-Type: application/json' （内容类型：应用程序/json
+--header 'Content-Type: application/json' \
 --data-raw '{
-  “proposal” : {
-    “entityType”： “dataset”、
-    “entityUrn” : “urn:li:dataset:(urn:li:dataPlatform:hive,SampleHiveDataset,PROD)”、
-    “changeType” : “UPSERT”、
-    “aspectName” : “datasetUsageStatistics”、
-    “方面”：{
-      “value” : “{ timestampMillis\”:1629840771000,uniqueUserCount\“ : 10, totalSqlQueries\”： 20, fieldCounts\： [ {\“fieldPath\”： \count\： 20}, {\“fieldPath\” ： \count\： 5} ]}”,
-      “contentType”： “application/json”
+  "proposal" : {
+    "entityType": "dataset",
+    "entityUrn" : "urn:li:dataset:(urn:li:dataPlatform:hive,SampleHiveDataset,PROD)",
+    "changeType" : "UPSERT",
+    "aspectName" : "datasetUsageStatistics",
+    "aspect" : {
+      "value" : "{ \"timestampMillis\":1629840771000,\"uniqueUserCount\" : 10, \"totalSqlQueries\": 20, \"fieldCounts\": [ {\"fieldPath\": \"col1\", \"count\": 20}, {\"fieldPath\" : \"col2\", \"count\": 5} ]}",
+      "contentType": "application/json"
     }
   }
 }'
@@ -450,82 +441,141 @@ curl --location --request POST 'http://localhost:8080/aspects?action=ingestPropo
 示例 2：通过 Python API 连接 Kafka（或 REST）
 
 ```python
-从 datahub.metadata.schema_classes import (
-    ChangeTypeClass、
-    DatasetFieldUsageCountsClass、
-    DatasetUsageStatisticsClass、
+from datahub.metadata.schema_classes import (
+    ChangeTypeClass,
+    DatasetFieldUsageCountsClass,
+    DatasetUsageStatisticsClass,
 )
 from datahub.emitter.kafka_emitter import DatahubKafkaEmitter
 from datahub.emitter.mcp import MetadataChangeProposalWrapper
-从 datahub.emitter.rest_emitter 导入 DatahubRestEmitter
+from datahub.emitter.rest_emitter import DatahubRestEmitter
 
 usageStats = DatasetUsageStatisticsClass(
             timestampMillis=1629840771000,
-            uniqueUserCount=10、
-            totalSqlQueries=20、
-            字段计数=[
+            uniqueUserCount=10,
+            totalSqlQueries=20,
+            fieldCounts=[
                 DatasetFieldUsageCountsClass(
-                    fieldPath=“col1”、
+                    fieldPath="col1",
                     count=10
                 )
             ]
         )
 
 mcpw = MetadataChangeProposalWrapper(
-    entityType=“dataset”、
-    aspectName=“datasetUsageStatistics”、
-    changeType=ChangeTypeClass.UPSERT、
-    entityUrn=“urn:li:dataset:(urn:li:dataPlatform:hive,SampleHiveDataset,PROD)”、
-    aspect=usageStats、
+    entityType="dataset",
+    aspectName="datasetUsageStatistics",
+    changeType=ChangeTypeClass.UPSERT,
+    entityUrn="urn:li:dataset:(urn:li:dataPlatform:hive,SampleHiveDataset,PROD)",
+    aspect=usageStats,
 )
 
-# 安装适当的发射器（kafka_emitter/rest_emitter）
-# my_emitter = DatahubKafkaEmitter(“”“<config>””)
-my_emitter = DatahubRestEmitter(“http://localhost:8080”)
+# Instantiate appropriate emitter (kafka_emitter/rest_emitter)
+# my_emitter = DatahubKafkaEmitter("""<config>""")
+my_emitter = DatahubRestEmitter("http://localhost:8080")
 my_emitter.emit(mcpw)
 ```
 
 ###### 在时间序列方面执行聚合
 
-时间序列方面的聚合可通过 GMS REST API `/analytics?action=getTimeseriesStats`执行。
-接受以下参数。
+GMS REST API `/analytics?action=getTimeseriesStats` 接受以下参数，可对时间序列方面进行汇总。
+
 - `entityName` - 与该方面相关联的实体名称。
 - `aspectName` - 方面的名称。
 - `filter` - 执行分组和聚合前的任何预过滤标准。
-- `metrics` - 聚合规范列表。聚合规范的 `fieldPath` 成员指的是
-  字段名，而 `aggregationType` 则指定聚合的类型。
-- `buckets` - 分组桶规范列表。每个分组桶都有一个 `key` 字段，指的是用于分组的字段。
-  字段。类型 "字段指定分组桶的类型。
+- `metrics` - 聚合规范列表。聚合规范的 `fieldPath` 成员指的是需要执行聚合的字段名称，而 `aggregationType` 则指定聚合的类型。
+- `buckets` - 分组桶规范列表。每个分组桶都有一个关键字段，指的是用于分组的字段。类型字段指定分组桶的类型。
 
-我们支持三种聚合，可在 Timeseries 注释字段的聚合查询中指定。
-`aggregationType` 可以取以下值：
+我们支持三种聚合，可在 Timeseries 注释字段的聚合查询中指定。`aggregationType` 可以取以下值：
 
-- `LATEST`： 每个数据桶中字段的最新值。支持任何类型的字段。
-- `SUM`： 每个数据桶中字段的累计和。仅支持积分类型。
-- `cardinality`： 每个数据桶中唯一值的数量或集合的卡入度。支持字符串和
-  记录类型。
+- LATEST：每个数据桶中字段的最新值。支持任何类型的字段。
+- SUM：每个数据桶中字段的累计和。仅支持积分类型。
+- CARDINALITY：每个数据桶中唯一值的个数或集合的卡入度。支持字符串和记录类型。
 
 我们支持两种类型的分组，用于定义执行聚合的数据桶：
 
-*`date_grouping_bucket`： 允许创建基于时间的数据桶，如按秒、分、小时、天、周、月、季度、年等、
-  季度、年等。应与时间戳字段结合使用，时间戳字段的值是自 *epoch* 起的毫秒数。
-  参数 `timeWindowSize` 指定了日期直方图的桶宽。
-- `string_grouping_bucket`： 允许根据字段的唯一值创建分组桶。应始终与字符串类型字段
-  应始终与字符串类型字段结合使用。
+- DATE_GROUPING_BUCKET：允许创建基于时间的数据桶，如按秒、分、小时、天、周、月、季度、年等。应与时间戳字段结合使用，时间戳字段的值是自纪元起的毫秒数。timeWindowSize 参数指定了日期直方图的桶宽。
+- STRING_GROUPING_BUCKET：允许根据字段的唯一值创建分组桶。应始终与字符串类型字段结合使用。
 
-API 会返回一个类似 SQL 的通用表，作为输出的 `table` 成员，其中包含了
-除了呼应输入参数外，该 API 还会返回一个类似于 SQL 表的通用表作为输出的 `table` 成员，其中包含 `group-by/aggregate` 查询的结果。
+除了回传输入参数外，API 还会返回一个类似 SQL 的通用表，作为输出的表成员，其中包含group-by/aggregate的结果。
 
-- columnNames：表列的名称。按组键名的显示顺序与请求中指定的顺序相同。
-  的顺序排列。聚合规范按照请求中指定的相同顺序跟随分组字段、
-  并命名为 `<agg_name>_<fieldPath>`。
+- columnNames：表列名称。分组键名的显示顺序与请求中指定的顺序相同。聚合规范按照与请求中指定的相同顺序跟随分组字段，并将命名为 `<agg_name>_<fieldPath>`。
 - columnTypes：列的数据类型。
-- `rows`: 数据值，每行对应相应的数据桶。
+- rows：数据值，每行对应相应的数据桶。
 
 例如 每天最新的唯一用户数。
 
 ```shell
+# QUERY
+curl --location --request POST 'http://localhost:8080/analytics?action=getTimeseriesStats' \
+--header 'X-RestLi-Protocol-Version: 2.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "entityName": "dataset",
+    "aspectName": "datasetUsageStatistics",
+    "filter": {
+        "criteria": []
+    },
+    "metrics": [
+        {
+            "fieldPath": "uniqueUserCount",
+            "aggregationType": "LATEST"
+        }
+    ],
+    "buckets": [
+        {
+            "key": "timestampMillis",
+            "type": "DATE_GROUPING_BUCKET",
+            "timeWindowSize": {
+                "multiple": 1,
+                "unit": "DAY"
+            }
+        }
+    ]
+}'
 
+# SAMPLE RESPOSNE
+{
+    "value": {
+        "filter": {
+            "criteria": []
+        },
+        "aspectName": "datasetUsageStatistics",
+        "entityName": "dataset",
+        "groupingBuckets": [
+            {
+                "type": "DATE_GROUPING_BUCKET",
+                "timeWindowSize": {
+                    "multiple": 1,
+                    "unit": "DAY"
+                },
+                "key": "timestampMillis"
+            }
+        ],
+        "aggregationSpecs": [
+            {
+                "fieldPath": "uniqueUserCount",
+                "aggregationType": "LATEST"
+            }
+        ],
+        "table": {
+            "columnNames": [
+                "timestampMillis",
+                "latest_uniqueUserCount"
+            ],
+            "rows": [
+                [
+                    "1631491200000",
+                    "1"
+                ]
+            ],
+            "columnTypes": [
+                "long",
+                "int"
+            ]
+        }
+    }
+}
 ```
 
-有关分组/聚合的复杂类型的更多示例，请参阅 [TimeseriesAspectServiceTestBase.java](https://github.com/datahub-project/datahub/blob/master/metadata-io/src/test/java/com/linkedin/metadata/timeseries/search/TimeseriesAspectServiceTestBase.java) 中 `getAggregatedStats` 组中的测试。
+有关分组/聚合的复杂类型的更多示例，请参阅 [TimeseriesAspectServiceTestBase.java](../../metadata-io/src/test/java/com/linkedin/metadata/timeseries/search/TimeseriesAspectServiceTestBase.java) 中 `getAggregatedStats` 组中的测试。

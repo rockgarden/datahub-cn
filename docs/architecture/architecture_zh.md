@@ -4,13 +4,11 @@ DataHub 是第三代数据目录，可实现数据发现、协作、治理和端
 
 下图描述了 DataHub 的高级架构。
 
-<p align="center">
-  <img width="100%"  src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/datahub-architecture.png"/>
-</p>
+![datahub-architecture](imgs/datahub-architecture.png)
 
-<p align="center">
-  <img width="100%"  src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/saas/DataHub-Architecture.png"/>
-</p>
+![datahub-architecture](imgs/datahub-architecture.svg)
+
+![DataHub-Architecture](imgs/DataHub-Architecture2.png)
 
 如需更详细地了解构成架构的组件，请查看组件。
 
