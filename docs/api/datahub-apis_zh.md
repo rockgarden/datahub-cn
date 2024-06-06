@@ -5,7 +5,7 @@ DataHub 提供多个 API，用于在平台上操作元数据。这些是我们�
 - 我们最推荐用于扩展和自定义 DataHub 实例行为的工具是我们在 [Python](metadata-ingestion/as-a-library.md) 和 [Java](metadata-integration/java/as-a-library.md)中的 SDK。
 - 如果你想定制 DataHub 客户端或推出自己的客户端，[GraphQL API](docs/api/graphql/getting-started.md)将为我们的前端提供动力。我们认为，如果它对我们足够好，那么对每个人也足够好！如果 `graphql` 没有涵盖您使用案例中的所有内容，请访问 [我们的 slack](docs/slack.md)，让我们知道如何改进它！
 - 如果你不太熟悉 `graphql`，而更愿意使用 OpenAPI，我们提供了 [OpenAPI](docs/api/openapi/openapi-usage-guide.md) 端点，允许你生成元数据事件和查询元数据。
-- 最后，如果你是一个勇敢的人，并且非常清楚自己在做什么......你确定你不想直接使用 SDK 吗？如果你坚持使用，[Rest.li API](docs/api/restli/restli-overview.md)是一个功能更强大的低级 API，仅供高级用户使用。
+- 最后，如果你是一个勇敢的人，并且非常清楚自己在做什么......你确定你不想直接使用 SDK 吗？如果你坚持使用，[Rest.li API](./restli/restli-overview.md)是一个功能更强大的低级 API，仅供高级用户使用。
 
 ## Python 和 Java SDK
 
@@ -17,11 +17,7 @@ DataHub 提供多个 API，用于在平台上操作元数据。这些是我们�
     开始使用 Python SDK
 </a>
 
-<a
-    className='button button--primary button--lg'
-    href=“/docs/metadata-integration/java/as-a-library”>
-    开始使用 Java SDK
-</a>
+[开始使用 Java SDK](../../metadata-integration/java/as-a-library_zh.md)
 
 ## GraphQL API
 
@@ -42,12 +38,12 @@ DataHub 提供多个 API，用于在平台上操作元数据。这些是我们�
     开始使用 OpenAPI
 </a>
 
-## Rest.li API
+## Rest\.li API
 
 > 注意事项
-  Rest.li API 仅适用于高级用户。如果您刚开始使用 DataHub，我们建议您使用 GraphQL API
+  Rest\.li API 仅适用于高级用户。如果您刚开始使用 DataHub，我们建议您使用 GraphQL API
 
-Rest.li API 代表底层持久层，并公开存储中使用的原始 PDL 模型。在引擎盖下，它为 GraphQL API 提供动力。除此之外，它还用于特定系统的元数据摄取，被元数据摄取框架用于将元数据直接推送到 DataHub。就所有意图和目的而言，Rest.li API 被视为系统内部 API，这意味着 DataHub 组件是唯一可以直接使用此 API 的组件。
+Rest\.li API 代表底层持久层，并公开存储中使用的原始 PDL 模型。在引擎盖下，它为 GraphQL API 提供动力。除此之外，它还用于特定系统的元数据摄取，被元数据摄取框架用于将元数据直接推送到 DataHub。就所有意图和目的而言，Rest\.li API 被视为系统内部 API，这意味着 DataHub 组件是唯一可以直接使用此 API 的组件。
 
 <a
     className='button button--primary button--lg'
@@ -116,5 +112,5 @@ DataHub 支持多个 API，每个 API 都有自己独特的用法和格式。
 | 使用 Kafka 创建数据集 lineage | 🚫 | ✅ [代码](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/examples/library/lineage_emitter_kafka.py) | ✅ |
 | 使用 MCPW 和 Rest Emitter 创建数据集 lineage | 🚫 | ✅ [代码](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/examples/library/lineage_emitter_mcpw_rest.py) | ✅ |
 | 使用 Rest Emitter 创建数据集 lineage | 🚫 | ✅ [代码](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/examples/library/lineage_emitter_rest.py) | ✅ |
-| 使用数据流创建 DataJob | 🚫 | ✅ [代码](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/examples/library/lineage_job_dataflow.py) [Simple](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/examples/library/lineage_job_dataflow_new_api_simple.py) [Verbose](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/examples/library/lineage_job_dataflow_new_api_verbose.py) | ✅ |
-| 创建程序管道 | 🚫 | ✅ [代码](https://github.com/datahub-project/datahub/blob/master/metadata-ingestion/examples/library/programatic_pipeline.py) | ✅ |
+| 使用数据流创建 DataJob | 🚫 | ✅ [代码](../../metadata-ingestion/examples/library/lineage_job_dataflow.py) [Simple](../../metadata-ingestion/examples/library/lineage_job_dataflow_new_api_simple.py) [Verbose](../../metadata-ingestion/examples/library/lineage_job_dataflow_new_api_verbose.py) | ✅ |
+| 创建程序管道 | 🚫 | ✅ [代码](../../metadata-ingestion/examples/library/programatic_pipeline.py) | ✅ |

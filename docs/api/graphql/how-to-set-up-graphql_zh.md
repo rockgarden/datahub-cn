@@ -82,4 +82,4 @@ Authorization: Bearer <access-token>
 ## 下一步是什么？
 
 现在你已经准备好使用 GraphQL 了，那么浏览一些使用案例如何？
-更多信息请参阅[GraphQL 入门](/docs/api/graphql/getting-started.md)。
+更多信息请参阅[GraphQL 入门](/docs/api/graphql/getting-started_zh.md)。
