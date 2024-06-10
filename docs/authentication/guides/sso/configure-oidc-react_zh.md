@@ -1,6 +1,3 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # OIDC 身份验证
 
 DataHub React 应用程序支持基于 [Pac4j Play](https://github.com/pac4j/play-pac4j) 库的 OIDC 身份验证。
@@ -14,15 +11,14 @@ DataHub React 应用程序支持基于 [Pac4j Play](https://github.com/pac4j/pla
 
 - **Client ID** - 身份提供商为您的应用程序提供的唯一标识符
 - **Client Secret** - 用于您和身份提供商之间交换的共享密文
-- **Discovery URL** - 可以发现身份提供商 OIDC API 的 URL。后缀应为`.well-known/openid-configuration`。有时，身份提供商不会在其设置指南中明确包含此 URL，尽管
-  但根据 OIDC 规范，该端点_将_存在。有关详细信息，请参阅 <http://openid.net/specs/openid-connect-discovery-1_0.html>。
+- **Discovery URL** - 可以发现身份提供商 OIDC API 的 URL。后缀应为`.well-known/openid-configuration`。有时，身份提供商不会在其设置指南中明确包含此 URL，尽管根据 OIDC 规范，该端点将存在。有关详细信息，请参阅 <http://openid.net/specs/openid-connect-discovery-1_0.html>。
 
 进一步操作：
 
 - **获取客户证书**
 - **获取客户端凭据**
 - **获取发现 URI**
-- **获取应用程序（客户端）ID***
+- **获取应用程序（客户端）ID**
 - **获取发现 URI**
 
 ## 3. 配置 DataHub 前端服务器
@@ -31,8 +27,7 @@ DataHub React 应用程序支持基于 [Pac4j Play](https://github.com/pac4j/pla
 
 启用OIDC的下一步是配置`datahub-frontend`以启用身份提供商的OIDC身份验证。
 
-为此，必须更新 `datahub-frontend` [docker.env](.../.../.../.../docker/datahub-frontend/env/docker.env) 文件，使用从身份提供者处接收到的
-从身份提供程序接收的值：
+为此，必须更新 `datahub-frontend` [docker.env](../../../../docker/datahub-frontend/env/docker.env) 文件，使用从身份提供程序接收的值：
 
 ```env
 # Required Configuration Values:
@@ -50,10 +45,10 @@ AUTH_OIDC_BASE_URL=your-datahub-url
 | AUTH_OIDC_CLIENT_SECRET | 从身份提供程序接收的唯一客户端密文| |
 | AUTH_OIDC_DISCOVERY_URI | 身份提供程序 OIDC 发现 API 的位置。以 `.well-known/openid-configuration` 为后缀。| |
 | AUTH_OIDC_BASE_URL | DataHub 部署的基本 URL，例如 <https://yourorgdatahub.com> (prod) 或 <http://localhost:9002> (testing) | |
-| AUTH_SESSION_TTL_HOURS | 提示用户再次登录前的时间长度（小时）。控制浏览器中行为者 cookie 的过期时间。数值转换为小时数。 | 24h |
+| AUTH_SESSION_TTL_HOURS | 提示用户再次登录前的时间长度（小时）。控制浏览器中行为者 cookie 的过期时间。数值转换为小时数。 | 24 |
 | MAX_SESSION_TOKEN_AGE | 确定会话令牌的过期时间。会话令牌是无状态的，因此这决定了会话令牌何时不能再使用，而有效的会话令牌可一直使用到过期为止。接受有效的相对 Java 日期样式字符串。| 24h |
 
-提供这些配置将导致 DataHub 将身份验证委托给您的身份提供商，请求 `oidc email profile` 作用域并解析来自作为 DataHub CorpUser 身份。
+提供这些配置将使 DataHub 将身份验证委托给您的身份提供商，请求 `oidc email profile` 作用域，并将来自已验证配置文件的 “preferred_username” 声明解析为 DataHub CorpUser 身份。
 
 > 注 默认情况下，DataHub 公开的登录回调端点位于 `${AUTH_OIDC_BASE_URL}/callback/oidc`。这必须**与您在步骤 1 中向身份提供商注册的登录重定向 URL 完全**匹配。
 
@@ -77,7 +72,7 @@ datahub-frontend:
       value: your-datahub-url
 ```
 
-你也可以将 OIDC 客户端秘密打包成 k8s 秘密，方法是运行
+你也可以将 OIDC 客户端秘密(secrets)打包成 k8s 秘密(secret)，方法是运行
 
 ```shell
 kubectl create secret generic datahub-oidc-secret --from-literal=secret=<<OIDC SECRET>>
@@ -107,7 +102,7 @@ AUTH_OIDC_CLIENT_AUTHENTICATION_METHOD=authentication-method
 
 | 配置 | 说明 | 默认值 |
 | - | - | - |
-| AUTH_OIDC_USER_NAME_CLAIM | 包含 DataHub 平台上使用的用户名的属性。默认情况下，这是作为标准 `email` 范围的一部分提供的 email。 | |
+| AUTH_OIDC_USER_NAME_CLAIM | 包含 DataHub 平台上使用的用户名的属性。默认情况下，这是作为标准电子邮件范围的一部分提供的 `email`。 | |
 | AUTH_OIDC_USER_NAME_CLAIM_REGEX | 用于从 userNameClaim 属性中提取用户名的 regex 字符串。例如，如果 userNameClaim 字段将包含电子邮件地址，而我们希望省略电子邮件的域名后缀，我们可以指定一个自定义 regex 来实现这一目的。(例如`([^@]+)`) | |
 | AUTH_OIDC_SCOPE | 一个字符串，代表终端用户授予身份提供者的范围。更多信息，请参阅 [OpenID Connect Scopes](https://auth0.com/docs/scopes/openid-connect-scopes)。 | |
 | AUTH_OIDC_CLIENT_AUTHENTICATION_METHOD | 代表与身份提供程序一起使用的令牌验证方法的字符串。默认值为 `client_secret_basic`，使用 HTTP Basic 身份验证。另一个选项是 `client_secret_post`，它将 client_id 和 secret_id 作为表单参数包含在 HTTP POST 请求中。更多信息，请参阅[OAuth 2.0 客户端身份验证](https://darutk.medium.com/oauth-2-0-client-authentication-4b5f929305d4) | client_secret_basic |
@@ -146,23 +141,22 @@ docker-compose -p datahub -f docker-compose.yml -f docker-compose.override.yml u
 导航到 DataHub 域，查看 SSO 的运行情况。
 
 > 注意
-默认情况下，启用 OIDC 将_不会_禁用假 JAAS 身份验证路径，该路径可通过 React 应用程序的 `/login` 路由访问。要禁用此身份验证路径，请另外指定以下配置：`AUTH_JAAS_ENABLED=false`
+默认情况下，启用 OIDC 将不会禁用虚拟 JAAS 身份验证路径，该路径可通过 React 应用程序的 `/login` 路由访问。要禁用此身份验证路径，请另外指定以下配置：`AUTH_JAAS_ENABLED=false`
 
 ## 摘要
 
-一旦用户通过身份提供商的身份验证，DataHub 将从提供的声明中提取一个用户名
-并通过设置一对会话 cookie 授予 DataHub 对用户的访问权限。
+一旦用户通过身份提供商的身份验证，DataHub 将从提供的声明中提取一个用户名并通过设置一对会话 cookie 授予 DataHub 对用户的访问权限。
 
 用户浏览 React 应用程序时发生的步骤简述如下：
 
-1. 向 `datahub-frontend` 服务器中的 `/authenticate` 端点发起 `GET
+1. 向 `datahub-frontend` 服务器中的 `/authenticate` 端点发起 `GET`
 2. `/authenticate` 会尝试通过会话 cookie 对请求进行身份验证
-3. 如果验证失败，服务器将重定向到身份供应商的登录experience
+3. 如果验证失败，服务器将重定向到身份供应商的登录体验
 4. 用户通过身份供应商登录
 5. 身份供应商验证用户身份，并重定向到 DataHub 已注册的登录重定向 URL，提供一个授权码，授权码可用于代表用户检索信息。
 6. DataHub 获取认证用户的配置文件并提取用户名，以在 DataHub 上识别用户（如 urn:li:corpuser:username）
 7. DataHub 为新认证的用户设置会话 Cookie
-8. DataHub 将用户重定向到主页（“/”）。
+8. DataHub 将用户重定向到主页（“/”）
 
 ## 疑难解答
 
@@ -192,7 +186,4 @@ docker-compose -p datahub -f docker-compose.yml -f docker-compose.override.yml u
 
 请查阅您的身份供应商的文档，以了解所支持的范围声明的更多信息。
 
-- [在Okta中注册应用程序](https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/main/)
-- [谷歌身份中的 OpenID Connect](https://developers.google.com/identity/protocols/oauth2/openid-connect)
-- [使用 Azure Active Directory 进行 OpenID Connect 身份验证](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/auth-oidc)
 - [Keycloak - 保护应用程序和服务指南](https://www.keycloak.org/docs/latest/securing_apps/)
