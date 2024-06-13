@@ -2,8 +2,6 @@
 标题：业务词汇
 ---
 
-import FeatureAvailability from '@site/src/components/FeatureAvailability';
-
 # 业务词汇表
 
 ## 简介
@@ -35,43 +33,31 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability';
 
 通过用户界面创建术语和术语组有两种方法。首先，您可以直接从词汇表主页创建，方法是单击右上角的菜单圆点并选择所需的选项：
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/root-glossary-create.png"/>
-</p>
+![root-glossary-create](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/root-glossary-create.png)
 
 您还可以直接从术语组页面创建术语或术语组。为此，您需要点击右上角的菜单圆点，然后选择您想要的内容：
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/create-from-node.png"/>
-</p>
+![create-from-node](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/create-from-node.png)
 
 请注意，弹出的模式会自动将您所在的当前术语组设置为**Parent**。您可以通过选择输入并浏览词汇表以找到所需的术语组来轻松更改。此外，你还可以开始键入一个术语组的名称，通过搜索看到它的出现。您也可以将此输入留空，以便创建一个没有父级的术语或术语组。
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/create-modal.png"/>
-</p>
+![create-modal](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/create-modal.png)
 
 ## 编辑术语或术语组
 
 要编辑一个术语或术语组，首先需要进入要编辑的术语或术语组的页面。然后，只需单击名称旁边的编辑图标，即可打开一个内联编辑器。更改文本后，点击外部或回车键即可保存。
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/edit-term.png"/>
-</p>
+![edit-term](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/edit-term.png)
 
 ## 移动术语或术语组
 
 创建术语或术语组后，您可以随时将其移动到不同术语组的父级下。为此，请单击任一实体右上方的菜单圆点，然后选择 **Move**。
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/move-term-button.png"/>
-</p>
+![move-term-button.png](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/move-term-button.png)
 
 这将打开一个模态(modal)，您可以在其中浏览词汇表，找到所需的术语组。
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/move-term-modal.png"/>
-</p>
+![move-term-modal.png](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/move-term-modal.png)
 
 ## 删除术语或术语组
 
@@ -79,28 +65,22 @@ import FeatureAvailability from '@site/src/components/FeatureAvailability';
 
 > **注意**：目前我们只支持删除没有任何子项的术语组。在支持级联删除之前，您必须先删除所有子项，然后再删除术语组。
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/delete-button.png"/>
-</p>
+![delete-button](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/delete-button.png)
 
 ## 向实体添加术语
 
 一旦定义了词汇表，就可以开始将术语附加到数据资产。要将词汇表术语添加到资产，请转到资产的实体页面，找到右侧边栏的**Add Terms**按钮。
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/add-term-to-entity.png"/>
-</p>
+![add-term-to-entity.png](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/add-term-to-entity.png)
 
 在弹出的模态(modal)中，您可以通过以下两种方式之一选择您关心的术语：
 
 - 在输入框中按名称搜索术语
 - 通过点击输入后出现的术语表下拉菜单进行导航
 
-<p align=“center”>
-  <img width=“100%” src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/add-term-modal.png"/>
-</p>
+![add-term-modal](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/glossary/add-term-modal.png)
 
-## 特权
+## 权限
 
 术语表术语和术语组与其他实体一样遵守元数据政策。不过，有两种特殊权限可用于在业务词汇表中配置权限。
 
@@ -150,8 +130,4 @@ DataHub 支持单个词汇表术语之间的 2 种不同关系： **Inherits Fro
 - [createGlossaryTerm](https://datahubproject.io/docs/graphql/mutations#createGlossaryTerm)
 - [createGlossaryNode](https://datahubproject.io/docs/graphql/mutations#createGlossaryNode) (Term Group)
 
-使用 **glossaryTerms** 属性，您可以轻松获取具有给定 URN 的实体的术语表术语。请查看 [Working with Metadata Entities](../api/graphql/how-to-set-up-graphql_zh.md#querying-for-glossary-terms-of-an-asset)以了解示例。
-
-## 资源
-
-- [创建业务词汇表并在 DataHub 中使用](<https://blog.datahubproject.io/crea>)
+使用 **glossaryTerms** 属性，您可以轻松获取具有给定 URN 的实体的术语表术语。请查看 [Working with Metadata Entities](../api/tutorials/terms_zh.md#阅读术语)以了解示例。

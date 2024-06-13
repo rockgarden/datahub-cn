@@ -19,13 +19,12 @@ DataHub 将数据集的自定义属性建模为字符串的键值对映射。
 ## 先决条件
 
 对于本教程，您需要部署 DataHub Quickstart 并摄取示例数据。
-详细信息请参阅 [Datahub Quickstart Guide](/docs/quickstart.md)。
+详细信息请参阅 [Datahub Quickstart Guide](/docs/quickstart_zh.md)。
 
-注意
+> 注意
 在添加自定义属性之前，您需要确保目标数据集已存在于您的 DataHub 实例中。
 如果尝试操作不存在的实体，操作将失败。
 在本指南中，我们将使用样本摄取的数据。
-:::
 
 在本示例中，我们将向数据集 `fct_users_deleted` 添加一些自定义属性 `cluster_name` 和 `retention_time`。
 
@@ -51,15 +50,15 @@ datahub get --urn "urn:li:dataset:(urn:li:dataPlatform:hive,fct_users_deleted,PR
 以下代码将自定义属性 `cluster_name` 和 `retention_time` 添加到名为 `fct_users_deleted` 的数据集中，而不会影响现有属性。
 
 > 🚫 目前不支持通过 GraphQL 在数据集上添加自定义属性。
-> 请查看 [API功能对照表](/docs/api/datahub-apis.md#datahub-api-comparison) 了解更多信息
+> 请查看 [API功能对照表](/docs/api/datahub-apis_zh.md#datahub-api-比较) 了解更多信息
 
-```java
-{{ inline /metadata-integration/java/examples/src/main/java/io/datahubproject/examples/DatasetCustomPropertiesAdd.java show_path_as_comment }}
-```
+java
 
-```python
-{{ inline /metadata-ingestion/examples/library/dataset_add_properties.py show_path_as_comment }}
-```
+![show_path_as_comment](/metadata-integration/java/examples/src/main/java/io/datahubproject/examples/DatasetCustomPropertiesAdd.java)
+
+python
+
+![show_path_as_comment](/metadata-ingestion/examples/library/dataset_add_properties.py)
 
 ### 添加自定义属性的预期结果
 

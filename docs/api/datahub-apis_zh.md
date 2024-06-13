@@ -23,20 +23,13 @@ DataHub 提供多个 API，用于在平台上操作元数据。这些是我们�
 
 `graphql` API 是该平台的主要公共 API。它可用于用您选择的语言以编程方式获取和更新元数据。该应用程序接口旨在简化最常见的操作。
 
-<a
-    className='button button--primary button--lg'
-    href=“/docs/api/graphql/getting-started”>
-    开始使用 GraphQL API
-</a>
+[开始使用 GraphQL API](/docs/api/graphql/getting-started_zh.md)
 
 ## OpenAPI
 
 适用于喜欢使用 OpenAPI 而非 GraphQL 进行编程操作的开发人员。为整个 DataHub 元数据模型的写入、读取和查询提供较低级别的 API 访问。
-<a
-    className='button button--primary button--lg'
-    href=“/docs/api/openapi/openapi-usage-guide”>
-    开始使用 OpenAPI
-</a>
+
+[开始使用 OpenAPI](/docs/api/openapi/openapi-usage-guide.md)
 
 ## Rest\.li API
 

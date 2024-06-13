@@ -5,7 +5,7 @@
  结构化属性是一组结构化、命名的属性，可以附加到数据集、数据任务等逻辑实体上。
 结构化属性的值是类型。从概念上讲，它们就像 “字段定义”。
 
-有关结构化属性的更多信息，请参阅[结构化属性特性指南](../../../docs/features/feature-guides/properties.md)。
+有关结构化属性的更多信息，请参阅[结构化属性特性指南](../../../docs/features/feature-guides/properties_zh.md)。
 
 ### 本指南的目标
 
@@ -41,27 +41,9 @@ OpenAPI 的要求如下
 以下代码将创建结构化属性 `io.acryl.privacy.retentionTime`。
 
 创建一个 yaml 文件，代表你要加载的属性。
-例如，下面的文件代表`io.acryl.privacy.retentionTime`属性。您可以查看完整示例 [此处](../../../metadata-ingestion/examples/structured_properties/structured_properties.yaml)。
+例如，下面的文件代表`io.acryl.privacy.retentionTime`属性。您可以查看完整示例：
 
-```yaml
-- id: io.acryl.privacy.retentionTime
-  # - urn: urn:li:structuredProperty:io.acryl.privacy.retentionTime # optional if id is provided
-  qualified_name: io.acryl.privacy.retentionTime # required if urn is provided
-  type: number
-  cardinality: MULTIPLE
-  display_name: Retention Time
-  entity_types:
-    - dataset # or urn:li:entityType:datahub.dataset
-    - dataFlow
-  description: "Retention Time is used to figure out how long to retain records in a dataset"
-  allowed_values:
-    - value: 30
-      description: 30 days, usually reserved for datasets that are ephemeral and contain pii
-    - value: 90
-      description: Use this for datasets that drive monthly reporting but contain pii
-    - value: 365
-      description: Use this for non-sensitive data that can be retained for longer
-```
+![此处](../../../metadata-ingestion/examples/structured_properties/structured_properties.yaml)
 
 使用 CLI 创建属性：
 
@@ -195,19 +177,9 @@ curl -X 'GET' -v \
 
 通过创建包含结构化属性的数据集 yaml 文件，可以将结构化属性设置到数据集中。例如，下面是一个在字段和数据集级别都包含结构化属性的数据集 yaml 文件。
 
-请参阅[此处的完整示例](../../../metadata-ingestion/examples/structured_properties/dataset.yaml)
+请参阅：
 
-```yaml
-- id: user_clicks_snowflake
-  platform: snowflake
-  schema:
-    fields:
-      - id: user_id
-        structured_properties:
-          io.acryl.dataManagement.deprecationDate: "2023-01-01"
-  structured_properties:
-    io.acryl.dataManagement.replicationSLA: 90
-```
+![此处的完整示例](../../../metadata-ingestion/examples/structured_properties/dataset.yaml)
 
 使用 CLI 插入数据集 yaml 文件：
 
@@ -251,7 +223,7 @@ datahub dataset get --urn {urn}
 
 ## 修补结构化属性值
 
-本节将向你展示如何修补结构化属性值--通过删除、添加或倒插单个属性。
+本节将向你展示如何修补结构化属性值-通过删除、添加或倒插单个属性。
 
 ### 添加结构化属性值
 
@@ -374,7 +346,7 @@ curl -X 'PATCH' -v \
 
 ![sp-remove](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/apis/tutorials/sp-remove.png)
 
-### 倒置结构化属性值
+### 插入结构化属性值
 
 在本例中，我们将以不同的值添加属性，同时保留现有属性。
 

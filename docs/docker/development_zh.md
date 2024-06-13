@@ -82,9 +82,7 @@ docker compose -p datahub start
 
 截图显示了 IntelliJ 使用默认 GMS 调试端口 5001 的配置示例。
 
-<p align="center">
-  <img width="100%"  src="https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/development/intellij-remote-debug.png"/>
-</p>
+![intellij-remote-debug](https://raw.githubusercontent.com/datahub-project/static-assets/main/imgs/development/intellij-remote-debug.png)
 
 ### 给 Docker 新手的提示
 
