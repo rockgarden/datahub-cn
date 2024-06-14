@@ -85,8 +85,7 @@ For a detailed guide on running recipes via UI, please refer to [UI Ingestion Gu
 
 ### Handling Sensitive Information in Recipes
 
-We automatically expand environment variables in the config (e.g. `${MSSQL_PASSWORD}`),
-similar to variable substitution in GNU bash or in docker-compose files.
+We automatically expand environment variables in the config (e.g. `${MSSQL_PASSWORD}`), similar to variable substitution in GNU bash or in docker-compose files.
 For details, see [variable-substitution](https://docs.docker.com/compose/compose-file/compose-file-v2/#variable-substitution).
 This environment variable substitution should be used to mask sensitive information in recipe files. As long as you can get env variables securely to the ingestion process there would not be any need to store sensitive information in recipes.
 

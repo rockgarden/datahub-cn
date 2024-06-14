@@ -12,7 +12,7 @@
 
 查看以下配方，开始摄取！请参阅下面的完整配置选项。
 
-有关编写和运行配方的一般说明，请参阅我们的[主要配方指南](https://datahubproject.io/docs/metadata-ingestion#recipes)。
+有关编写和运行配方的一般说明，请参阅我们的[主要配方指南](../../metadata-ingestion/recipe_overview_zh.md)。
 
 ```yaml
 source:
