@@ -4,9 +4,24 @@ import { message } from 'antd';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, ServerError } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { ThemeProvider } from 'styled-components';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import './App.less';
+import './i18n/config';
+import { useTranslation } from 'react-i18next';
 import { Routes } from './app/Routes';
+import EntityRegistry from './app/entity/EntityRegistry';
+import { DashboardEntity } from './app/entity/dashboard/DashboardEntity';
+import { ChartEntity } from './app/entity/chart/ChartEntity';
+import { UserEntity } from './app/entity/user/User';
+import { GroupEntity } from './app/entity/group/Group';
+import { DatasetEntity } from './app/entity/dataset/DatasetEntity';
+import { DataFlowEntity } from './app/entity/dataFlow/DataFlowEntity';
+import { DataJobEntity } from './app/entity/dataJob/DataJobEntity';
+import { TagEntity } from './app/entity/tag/Tag';
+import { EntityRegistryContext } from './entityRegistryContext';
+import { Theme } from './conf/theme/types';
+import defaultThemeConfig from './conf/theme/theme_light.config.json';
 import { PageRoutes } from './conf/Global';
 import { isLoggedInVar } from './app/auth/checkAuthStatus';
 import { GlobalCfg } from './conf';
@@ -52,16 +67,9 @@ const client = new ApolloClient({
                             return { ...oldObj, ...newObj };
                         },
                     },
-                    entity: {
-                        merge: (oldObj, newObj) => {
-                            return { ...oldObj, ...newObj };
                         },
                     },
                 },
-            },
-        },
-        // need to define possibleTypes to allow us to use Apollo cache with union types
-        possibleTypes: possibleTypesResult.possibleTypes,
     }),
     credentials: 'include',
     defaultOptions: {
@@ -83,6 +91,8 @@ export const InnerApp: React.VFC = () => {
                 </Helmet>
                 <Router>
                     <Routes />
+                        </ApolloProvider>
+                    </EntityRegistryContext.Provider>
                 </Router>
             </CustomThemeProvider>
         </HelmetProvider>
