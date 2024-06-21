@@ -131,7 +131,7 @@ cd ../
 
 ## 常见的编译问题
 
-### 获取 `Unsupported class file major version 57`
+### 获取 Unsupported class file major version 57
 
 您使用的 Java 版本对于 gradle 来说可能太新了。运行以下命令检查您的 Java 版本
 
@@ -141,20 +141,20 @@ java --version
 
 虽然可以使用较新版本的 Java 构建和运行 DataHub，但我们目前仅支持 [Java 17](https://openjdk.org/projects/jdk/17/)（又称 Java 17）。
 
-### 为 `javax.annotation.Generated` 获取 `cannot find symbol` 错误
+### 为 javax.annotation.Generated 获取 cannot find symbol 错误
 
 与上一个问题类似，请使用 Java 17 构建项目。
 您可以在一台机器上安装多个 Java 版本，并使用 `JAVA_HOME` 环境变量在它们之间切换。详情请参见 [本文](https://docs.oracle.com/cd/E21454_01/html/821-2531/inst_jdk_javahome_t.html)。
 
-### `:metadata-models:generateDataTemplate` 任务失败，出现 `java.nio.file.InvalidPathException： Illegal char <:> at index XX` 或 `Caused by: java.lang.IllegalArgumentException: 'other' has different root` 错误
+### :metadata-models:generateDataTemplate 任务失败，出现 java.nio.file.InvalidPathException： Illegal char <:> at index XX 或 Caused by: java.lang.IllegalArgumentException: 'other' has different root 错误
 
 由于 Pegasus 插件中的一个错误，在 Windows 上构建项目时会出现[已知问题](https://github.com/linkedin/rest.li/issues/287)。请参阅[Windows兼容性](#windows兼容性)。
 
-### 与`generateDataTemplate`或其他`generate`任务有关的各种错误
+### 与generateDataTemplate或其他generate任务有关的各种错误
 
 由于我们会从模型生成大量文件，因此生成的旧文件可能会与新模型更改发生冲突。发生这种情况时，只需清除 `./gradlew` 即可解决问题。
 
-### `任务':metadata-service:restli-servlet-impl:checkRestModel'`执行失败
+### 任务:metadata-service:restli-servlet-impl:checkRestModel执行失败
 
 这通常意味着 GMS 中的 rest.li API 引入了 [incompatible change](https://linkedin.github.io/rest.li/modeling/compatibility_check)。您需要运行一次以下命令来重建快照/IDL
 
@@ -162,15 +162,15 @@ java --version
 ./gradlew :metadata-service:restli-servlet-impl:build -Prest.model.compatibility=ignore
 ```
 
-### `java.io.IOException: No space left on device`
+### java.io.IOException: No space left on device
 
 这意味着您磁盘上用于构建的空间即将耗尽。请释放一些空间或尝试其他磁盘。
 
-#### `Build failed` for task `./gradlew :datahub-frontend:dist -x yarnTest -x yarnLint`.
+### Build failed for task ./gradlew :datahub-frontend:dist -x yarnTest -x yarnLint`
 
 这可能意味着您需要更新 [Yarn](https://yarnpkg.com/getting-started/install) 版本
 
-#### `:buildSrc:compileJava`任务失败，出现`package com.linkedin.metadata.models.registry.config does not exist`和`cannot find symbol`错误。
+### :buildSrc:compileJava任务失败，出现package com.linkedin.metadata.models.registry.config does not exist和cannot find symbol错误
 
 当前在 [buildSrc](https://github.com/datahub-project/datahub/tree/master/buildSrc) 目录中有两个符号链接，分别指向 [com.linkedin.metadata.aspect.plugins.config](https://github.com/datahub-project/datahub/blob/master/buildSrc/src/main/java/com/linkedin/metadata/aspect/plugins/config) 和 [com.linkedin.metadata.models.registry.config](https://github.com/datahub-project/datahub/blob/master/buildSrc/src/main/java/com/linkedin/metadata/models/registry/config
 )软件包的目录，该目录指向 [entity-registry](https://github.com/datahub-project/datahub/tree/master/entity-registry) 子项目中的相应软件包。

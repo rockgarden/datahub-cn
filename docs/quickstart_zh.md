@@ -44,13 +44,27 @@ datahub docker quickstart
 ```
 
 这将使用 [docker-compose](https://docs.docker.com/compose/) 部署 DataHub 实例。
-如果你好奇，“docker-compose.yaml” 文件会下载到你的主目录下的 “.datahub/quickstart” 目录。
+如果你好奇，docker-compose.yaml 文件会下载到你的主目录下的 `.datahub/quickstart` 目录。
 
 如果一切顺利，你应该会看到类似下面这样的信息：
 
 ```shell-session
 Fetching docker-compose file https://raw.githubusercontent.com/datahub-project/datahub/master/docker/quickstart/docker-compose-without-neo4j-m1.quickstart.yml from GitHub
 Pulling docker images...
+
+ ⠴ mysql-setup 4 layers [⠀⠀⠀⠀]      0B/0B      Pulling                                                                                                         144.6s 
+ ⠴ kafka-setup 18 layers [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling                                                                                          144.6s 
+ ⠴ datahub-gms 11 layers [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling                                                                                                 144.6s 
+ ⠴ datahub-upgrade 7 layers [⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling                                                                                                  144.6s 
+ ⠴ zookeeper 2 layers [⠀⠀]      0B/0B      Pulling                                                                                                             144.6s 
+ ⠴ elasticsearch 9 layers [⠀⠀⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling                                                                                                  144.6s 
+ ⠴ datahub-frontend-react 8 layers [⠀⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling                                                                                          144.6s 
+ ⠴ schema-registry 2 layers [⠀⠀]      0B/0B      Pulling                                                                                                       144.6s 
+ ⠴ datahub-actions 27 layers [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling                                                                             144.6s 
+ ⠴ elasticsearch-setup 4 layers [⠀⠀⠀⠀]      0B/0B      Pulling                                                                                                 144.6s 
+ ⠴ mysql 12 layers [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling                                                                                                      144.6s 
+ ⠴ broker 11 layers [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]      0B/0B      Pulling  
+
 Finished pulling docker images!
 
 [+] Running 11/11

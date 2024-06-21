@@ -104,7 +104,7 @@ docker compose -p datahub start
 
 ### 运行特定服务
 
-`docker-compose up` will launch all services in the configuration, including dependencies, unless they're already running. If you, for some reason, wish to change this behavior, check out these example commands.
+`docker-compose up` 会启动配置中的所有服务，包括依赖项，除非它们已经在运行。如果你出于某种原因希望改变这种行为，请查看这些示例命令。
 
 ```shell
 docker-compose -p datahub -f docker-compose.yml -f docker-compose.override.yml -f docker-compose-without-neo4j.m1.yml -f docker-compose.dev.yml up datahub-gms
