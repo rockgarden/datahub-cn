@@ -1,8 +1,8 @@
 # 在开发过程中使用 Docker 镜像
 
-我们创建了一个特殊的 `docker-compose.dev.yml` 覆盖文件，用来配置 docker 镜像，使其在开发过程中更容易使用。
+我们创建了一个特殊的 [docker-compose.dev.yml](../../docker/docker-compose.dev.yml) 覆盖文件，用来配置 docker 镜像，使其在开发过程中更容易使用。
 
-通常情况下，你会结合 gradle 和 docker compose 命令从头开始重建镜像。然而 这对开发来说耗时太长，而且需要推理好几层的 docker compose 配置 yaml 文件，这可能取决于你的硬件（苹果 M1）。
+通常情况下，你会结合 gradle 和 docker compose 命令从头开始重建镜像。然而 这对开发来说耗时太长，而且需要推理好几层的 docker compose 配置 yaml 文件，这可能取决于你的硬件。
 
 `docker-compose.dev.yml`文件绕过了通过挂载二进制文件、启动脚本和其他数据来重建 docker 映像的需要、 和其他数据。这些以 `debug` 标记的开发镜像将使用你通过 gradle 本地构建的代码。在本地构建并绕过重建 Docker 镜像的需要应该会更快。
 

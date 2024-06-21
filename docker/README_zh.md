@@ -7,8 +7,7 @@ hide_title: true
 
 ## 先决条件
 
-你需要安装 [docker](https://docs.docker.com/install/) 和
-[docker-compose](https://docs.docker.com/compose/install/)（如果使用 Linux；在 Windows 和 Mac 上，compose 包含在Docker Desktop）。
+你需要安装 [docker](https://docs.docker.com/install/) 和 [docker-compose](https://docs.docker.com/compose/install/)（如果使用 Linux；在 Windows 和 Mac 上，compose 包含在Docker Desktop）。
 
 确保为 Docker 引擎分配足够的硬件资源。经过测试和确认的配置： 2 个 CPU、8GB RAM、2GB Swap 区域。
 
