@@ -87,4 +87,3 @@ DataHub 工作的各种杠杆。
 | `AUTH_OIDC_EXTRACT_GROUPS_ENABLED` | `false`  | boolean   | [`Frontend`]  | 从用户的组申请中自动配置组。|
 | `AUTH_SESSION_TTL_HOURS`           | `24`     | string    | [`Frontend`]  | 用户会话的有效时长。超过这个小时后，浏览器中的演员 cookie 将过期，用户将被提示重新登录。|
 | `MAX_SESSION_TOKEN_AGE`            | `24h`    | string    | [`Frontend`]  | 会话令牌的最长有效期。[用户会话令牌是无状态的，过了这个时间就会失效](https://www.playframework.com/documentation/2.8.x/SettingsSession#Session-Timeout-/-Expiration) 要求用户重新登录。|
-
