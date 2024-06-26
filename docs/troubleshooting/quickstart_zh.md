@@ -4,61 +4,49 @@
 
 ## 常见问题
 
-<details><summary>
-Command not found: datahub
-</summary>
+1. Command not found: datahub
 
-如果运行 datahub cli 会在终端中产生 “command not found（找不到命令）”错误，则系统可能默认使用了较旧版本的 旧版本的 Python。请尝试在 `datahub` 命令前加上 `python3 -m`：
+    如果运行 datahub cli 会在终端中产生 “command not found（找不到命令）”错误，则系统可能默认使用了较旧版本的 旧版本的 Python。请尝试在 `datahub` 命令前加上 `python3 -m`：
 
-```bash
-python3 -m datahub docker quickstart
-```
+    ```bash
+    python3 -m datahub docker quickstart
+    ```
 
-另一种可能是你的系统 PATH 没有包含 pip 的 `$HOME/.local/bin` 目录。在 Linux 系统中，你可以将其添加到你的 `~/.bashrc` 目录中：
+    另一种可能是你的系统 PATH 没有包含 pip 的 `$HOME/.local/bin` 目录。在 Linux 系统中，你可以将其添加到你的 `~/.bashrc` 目录中：
 
-```bash
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-```
+    ```bash
+    if [ -d "$HOME/.local/bin" ] ; then
+        PATH="$HOME/.local/bin:$PATH"
+    fi
+    ```
 
-</details>
+2. Port Conflicts
 
-<details><summary>
-Port Conflicts
-</summary>
+    默认情况下，快速启动部署要求本地计算机上的以下端口空闲：
 
-默认情况下，快速启动部署要求本地计算机上的以下端口空闲：
+    - 3306 用于 MySQL
+    - 9200 用于 Elasticsearch
+    - 9092 用于 Kafka 代理
+    - 8081 用于模式注册中心
+    - 用于 ZooKeeper 的 2181 端口
+    - 9002 用于 DataHub Web 应用程序 (datahub-frontend)
+    - 8080 用于 DataHub 元数据服务 (datahub-gms)
 
-- 3306 用于 MySQL
-- 9200 用于 Elasticsearch
-- 9092 用于 Kafka 代理
-- 8081 用于模式注册中心
-- 用于 ZooKeeper 的 2181 端口
-- 9002 用于 DataHub Web 应用程序 (datahub-frontend)
-- 8080 用于 DataHub 元数据服务 (datahub-gms)
+    如果默认端口与你已经在机器上运行的软件冲突，你可以通过向 `datahub docker quickstart` 命令传递额外的标志来覆盖这些端口。
+    例如，要使用 53306（而不是默认的 3306）覆盖 MySQL 端口，可以使用 `datahub docker quickstart --mysql-port 53306`。使用 `datahub docker quickstart --help` 查看所有支持的选项。
+    对于元数据服务容器（datahub-gms），你需要使用环境变量 `DATAHUB_MAPPED_GMS_PORT`。例如，要使用 58080 端口，你可以使用 `DATAHUB_MAPPED_GMS_PORT=58080 datahub docker quickstart` 。
 
-如果默认端口与你已经在机器上运行的软件冲突，你可以通过向 `datahub docker quickstart` 命令传递额外的标志来覆盖这些端口。
-例如，要使用 53306（而不是默认的 3306）覆盖 MySQL 端口，可以使用 `datahub docker quickstart --mysql-port 53306`。使用 `datahub docker quickstart --help` 查看所有支持的选项。
-对于元数据服务容器（datahub-gms），你需要使用环境变量 `DATAHUB_MAPPED_GMS_PORT`。例如，要使用 58080 端口，你可以使用 `DATAHUB_MAPPED_GMS_PORT=58080 datahub docker quickstart` 。
-</details>
+3. no matching manifest for linux/arm64/v8 in the manifest list entries
 
-<details><summary>
-no matching manifest for linux/arm64/v8 in the manifest list entries
-</summary>
-在使用 Apple Silicon（M1、M2 等）的 Mac 电脑上，你可能会看到类似 “no matching manifest for linux/arm64/v8 in the manifest list entries” 这样的错误，这通常意味着 datahub cli 无法检测到你是在 Apple Silicon 上运行它。要解决这个问题，可以通过发出 `datahub docker quickstart --arch m1` 来覆盖默认的架构检测。
-</details>
+    在使用 Apple Silicon（M1、M2 等）的 Mac 电脑上，你可能会看到类似 “no matching manifest for linux/arm64/v8 in the manifest list entries” 这样的错误，这通常意味着 datahub cli 无法检测到你是在 Apple Silicon 上运行它。要解决这个问题，可以通过发出 `datahub docker quickstart --arch m1` 来覆盖默认的架构检测。
 
-<details><summary>
-Miscellaneous Docker issues
-</summary>
-Docker 可能会出现一些杂项问题，如容器冲突和卷悬空，这些问题通常可以通过使用以下命令修剪 Docker 状态来解决。请注意，该命令会删除所有未使用的容器、网络、映像（包括悬挂的和未引用的），并可选择删除卷。
+4. Miscellaneous Docker issues
 
-```shell
-docker system prune
-```
+    Docker 可能会出现一些杂项问题，如容器冲突和卷悬空，这些问题通常可以通过使用以下命令修剪 Docker 状态来解决。请注意，该命令会删除所有未使用的容器、网络、映像（包括悬挂的和未引用的），并可选择删除卷。
 
-</details>
+    ```shell
+    docker system prune
+    ```
 
 ## 如何确认快速启动后所有 Docker 容器是否都按预期运行？
 
@@ -108,7 +96,7 @@ broker                  | [2020-04-03 14:34:42,398] INFO Client session timed ou
 schema-registry         | [2020-04-03 14:34:48,518] WARN Client session timed out, have not heard from server in 20459ms for sessionid 0x10000023fa60007 (org.apache.zookeeper.ClientCnxn)
 ```
 
-## 如何检查是否创建了 [MXE](../what/mxe.md) Kafka 主题？
+## 如何检查是否创建了[MXE](../what/mxe.md) Kafka主题？
 
 你可以使用[kafkacat](https://github.com/edenhill/kafkacat)这样的工具来列出所有主题。
 你可以运行下面的命令查看在你的 Kafka 代理中创建的 Kafka 主题。

@@ -1,5 +1,5 @@
 ---
-标题 “使用 Docker 进行部署
+标题 “使用 Docker 进行部署”
 hide_title: true
 ---
 
@@ -16,7 +16,7 @@ hide_title: true
 启动和测试 DataHub 的最简单方法是使用 DataHub [Docker](https://www.docker.com) 镜像。
 这些镜像会随着每次提交到版本库而持续部署到 [Docker Hub](https://hub.docker.com/u/linkedin)。
 
-您可以通过我们的[快速入门指南](.../docs/quickstart.md)。
+您可以通过我们的[快速入门指南](.../docs/quickstart_zh.md)。
 
 DataHub Docker 映像：
 
@@ -43,7 +43,7 @@ DataHub Docker 映像：
 
 ### 接收演示数据
 
-如果你想在 DataHub 启动后测试摄取一些数据，请使用 `./docker/ingestion/ingestion.sh` 脚本或 `datahub docker ingest-sample-data`。更多详情，请参阅 [quickstart guide](.../docs/quickstart.md)。
+如果你想在 DataHub 启动后测试摄取一些数据，请使用 `./docker/ingestion/ingestion.sh` 脚本或 `datahub docker ingest-sample-data`。更多详情，请参阅 [quickstart guide](.../docs/quickstart_zh.md)。
 
 ## 在开发过程中使用 Docker 镜像
 
@@ -55,7 +55,7 @@ DataHub Docker 映像：
 
 #### 构建镜像
 
-> 这并不是我们推荐的开发流程，大多数开发人员都应遵循开发过程中使用 [Docker 镜像](../docs/docker/development.md)指南。
+> 这并不是我们推荐的开发流程，大多数开发人员都应遵循开发过程中使用 [Docker镜像](../docs/docker/development_zh.md)指南。
 
 要构建完整的映像（我们将要发布的映像），你需要运行以下程序：
 

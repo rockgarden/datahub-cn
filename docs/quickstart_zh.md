@@ -148,6 +148,8 @@ datahub docker quickstart
 
 ```bash
 datahub docker quickstart --quickstart-compose-file <path to compose file>
+
+datahub docker quickstart --quickstart-compose-file /data/soft/datahub/docker/quickstart/docker-compose-without-neo4j.quickstart.yml
 ```
 
 ### 备份 DataHub

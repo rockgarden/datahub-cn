@@ -1,11 +1,11 @@
-# OIDC 身份验证
+# OIDC身份验证
 
 DataHub React 应用程序支持基于 [Pac4j Play](https://github.com/pac4j/play-pac4j) 库的 OIDC 身份验证。
 这使 DataHub 的操作员能够与第三方身份提供商（如 Okta、Google、Keycloak 等）集成，对用户进行身份验证。
 
-## 1. 在身份供应商处注册应用程序
+## 1.在身份供应商处注册应用程序
 
-## 2. 获取客户端凭证和发现 URL
+## 2.获取客户端凭证和发现 URL
 
 此步骤的目标应是获取以下值，这些值需要在部署 DataHub 之前进行配置：
 
@@ -21,7 +21,7 @@ DataHub React 应用程序支持基于 [Pac4j Play](https://github.com/pac4j/pla
 - **获取应用程序（客户端）ID**
 - **获取发现 URI**
 
-## 3. 配置 DataHub 前端服务器
+## 3.配置 DataHub 前端服务器
 
 ### Docker
 
@@ -108,7 +108,7 @@ AUTH_OIDC_CLIENT_AUTHENTICATION_METHOD=authentication-method
 | AUTH_OIDC_CLIENT_AUTHENTICATION_METHOD | 代表与身份提供程序一起使用的令牌验证方法的字符串。默认值为 `client_secret_basic`，使用 HTTP Basic 身份验证。另一个选项是 `client_secret_post`，它将 client_id 和 secret_id 作为表单参数包含在 HTTP POST 请求中。更多信息，请参阅[OAuth 2.0 客户端身份验证](https://darutk.medium.com/oauth-2-0-client-authentication-4b5f929305d4) | client_secret_basic |
 | AUTH_OIDC_PREFERRED_JWS_ALGORITHM | 可用于选择 id 标记的首选签名算法。示例包括 RS256或HS256。如果您的 IdP 在签名算法列表中的`RS256`/`HS256`前包含`none`，则必须设置该值。 | |
 
-### 用户和组供应（JIT 供应）
+### 用户和组供应（JIT供应）
 
 默认情况下，DataHub 会乐观地尝试供应登录时尚未存在的用户和组。
 对于用户，我们提取名、姓、显示名和电子邮件等信息来构建基本用户配置文件。如果存在群组，我们只需提取其名称。
@@ -130,7 +130,7 @@ AUTH_OIDC_GROUPS_CLAIM=<your-groups-claim-name>
 | AUTH_OIDC_EXTRACT_GROUPS_ENABLED | 仅适用于 `AUTH_OIDC_JIT_PROVISIONING_ENABLED` 设为 true 的情况。这将决定我们是否应尝试从 OIDC 属性中的特定索赔中提取组名称列表。请注意，如果启用该功能，每次登录都会重新同步身份供应商中的群组成员资格，清除通过DataHub用户界面分配的群组成员资格。谨慎启用！| false |
 | AUTH_OIDC_GROUPS_CLAIM | 仅当 `AUTH_OIDC_EXTRACT_GROUPS_ENABLED` 设置为 “true” 时才适用。这决定了哪些 OIDC claims将包含字符串组名列表。接受以逗号分隔的多个claims名称。例如：“groups, teams, departments”。 | groups |
 
-## 4. 重启 datahub-frontend-react
+## 4.重启 datahub-frontend-react
 
 配置完成后，重启 `datahub-frontend-react` 容器将启用间接身份验证流，其中 DataHub 将身份验证委托给指定的身份提供程序。
 
@@ -167,20 +167,20 @@ docker-compose -p datahub -f docker-compose.yml -f docker-compose.override.yml u
     - 确认所有值都一致（如部署 DataHub 的主机 URL），且没有拼写错误的值（客户 ID、客户密 码）。
     - 确认您的身份提供商支持请求的范围，且您的身份提供商支持 DataHub 用于唯一标识用户的声明（即属性）（请参阅身份提供商 OpenID Connect 文档）。默认情况下，该声明为 `email`。
     - 确保您配置的发现 URI（`AUTH_OIDC_DISCOVERY_URI`）在运行 datahub-frontend 容器的地方可以访问。您可以向该地址发送一个基本的CURL（**专业提示**：您也可以在浏览器中访问该地址，查看有关身份供应商的更多具体细节）。
-    - 检查 “datahub-frontend ”容器的容器日志。希望这能提供登录切换失效的更多原因。
+    - 检查 “datahub-frontend” 容器的容器日志。希望这能提供登录切换失效的更多原因。
 
     如果其他方法都不奏效，请随时联系 Slack 上的 DataHub 社区以获得实时支持。
 
 2. 当用户尝试登录时，我在 `datahub-frontend` 日志中看到一个错误：`Caused by: java.lang.RuntimeException: Failed to resolve user name claim from profile provided by Identity Provider. Missing attribute. Attribute: 'email', Regex: '(.*)', Profile: &#123; ....`
 
-    这表明您的身份供应商没有提供名称为 “email ”的声明，而 DataHub 默认使用该名称唯一标识贵机构内的用户。
+    这表明您的身份供应商没有提供名称为“email”的声明，而 DataHub 默认使用该名称唯一标识贵机构内的用户。
 
     要解决这个问题，您可能需要
 
-    1. 通过更改 `AUTH_OIDC_USER_NAME_CLAIM`（如改为 “name” 或 “preferred*username”），将作为唯一用户标识符的声明改为其他名称。
-    2. 更改环境变量 `AUTH_OIDC_SCOPE` 以包含检索名称为 “email” 的请求所需的范围
+    1. 通过更改 `AUTH_OIDC_USER_NAME_CLAIM`（如改为“name”或“preferred*username”），将作为唯一用户标识符的声明改为其他名称。
+    2. 更改环境变量 `AUTH_OIDC_SCOPE` 以包含检索名称为“email”的请求所需的范围
 
-    对于 `datahub-frontend` 容器/pod。
+    对于 `datahub-frontend` 容器 /pod。
 
 ## 参考
 
