@@ -177,10 +177,10 @@ docker-compose -p datahub -f docker-compose.yml -f docker-compose.override.yml u
 
     要解决这个问题，您可能需要
 
-    1. 通过更改 `AUTH_OIDC_USER_NAME_CLAIM`（如改为“name”或“preferred*username”），将作为唯一用户标识符的声明改为其他名称。
-    2. 更改环境变量 `AUTH_OIDC_SCOPE` 以包含检索名称为“email”的请求所需的范围
+    1. 通过更改 `AUTH_OIDC_USER_NAME_CLAIM`（如改为“name”或“preferred*username”或“preferred_username”），将作为唯一用户标识符的声明改为其他名称；
+    2. 更改环境变量 `AUTH_OIDC_SCOPE` 以包含检索名称为“email”（openid,profile,email）的请求所需的范围。
 
-    对于 `datahub-frontend` 容器 /pod。
+    对于 `datahub-frontend` 容器 /pod 重新运行。
 
 ## 参考
 
