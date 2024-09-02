@@ -108,6 +108,10 @@ We welcome contributions from the community. Please refer to our [Contributing G
 
 Join our [Slack workspace](https://datahubproject.io/slack?utm_source=github&utm_medium=readme&utm_campaign=github_readme) for discussions and important announcements. You can also find out more about our upcoming [town hall meetings](docs/townhalls.md) and view past recordings.
 
+## Security
+
+See [Security Stance](docs/SECURITY_STANCE.md) for information on DataHub's Security.
+
 ## Adoption
 
 Here are the companies that have officially adopted DataHub. Please feel free to add yours to the list if we missed it.
@@ -118,6 +122,7 @@ Here are the companies that have officially adopted DataHub. Please feel free to
 - [Cabify](https://cabify.tech/)
 - [ClassDojo](https://www.classdojo.com/)
 - [Coursera](https://www.coursera.org/)
+- [CVS Health](https://www.cvshealth.com/)
 - [DefinedCrowd](http://www.definedcrowd.com)
 - [DFDS](https://www.dfds.com/)
 - [Digital Turbine](https://www.digitalturbine.com/)
@@ -137,7 +142,7 @@ Here are the companies that have officially adopted DataHub. Please feel free to
 - [Peloton](https://www.onepeloton.com)
 - [PITS Global Data Recovery Services](https://www.pitsdatarecovery.net/)
 - [Razer](https://www.razer.com)
-- [Saxo Bank](https://www.home.saxo)
+- [Rippling](https://www.rippling.com/)
 - [Showroomprive](https://www.showroomprive.com/)
 - [SpotHero](https://spothero.com)
 - [Stash](https://www.stash.com)
@@ -151,6 +156,7 @@ Here are the companies that have officially adopted DataHub. Please feel free to
 - [Wikimedia](https://www.wikimedia.org)
 - [Wolt](https://wolt.com)
 - [Zynga](https://www.zynga.com)
+
 
 
 ## Select Articles & Talks

@@ -17,11 +17,11 @@ import { Assertion, AssertionRunStatus, DataContract, EntityType } from '../../.
 import { getResultColor, getResultIcon, getResultText } from './assertionUtils';
 import { useDeleteAssertionMutation } from '../../../../../../graphql/assertion.generated';
 import { capitalizeFirstLetterOnly } from '../../../../../shared/textUtil';
-import AssertionMenu from './AssertionMenu';
 import { REDESIGN_COLORS } from '../../../constants';
 import { useEntityRegistry } from '../../../../../useEntityRegistry';
 import { isAssertionPartOfContract } from './contract/utils';
 import { useEntityData } from '../../../EntityContext';
+import CopyUrnMenuItem from '../../../../../shared/share/items/CopyUrnMenuItem';
 
 const ResultContainer = styled.div`
     display: flex;
@@ -55,6 +55,12 @@ const DataContractLogo = styled(AuditOutlined)`
     margin-left: 8px;
     font-size: 16px;
     color: ${REDESIGN_COLORS.BLUE};
+`;
+
+const AssertionDescriptionContainer = styled.div`
+    display: flex;
+    justify-content: right;
+    align-items: center;
 `;
 
 type Props = {
@@ -130,6 +136,15 @@ export const DatasetAssertionsList = ({
             assertion.runEvents.runEvents[0].result?.type,
     }));
 
+    const assertionMenuItems = (urn: string) => {
+        return [
+            {
+                key: 1,
+                label: <CopyUrnMenuItem key="1" urn={urn} type="Assertion" />,
+            },
+        ];
+    };
+
     const assertionsTableCols = [
         {
             title: '',
@@ -162,10 +177,17 @@ export const DatasetAssertionsList = ({
                                 </Tag>
                             </Tooltip>
                         </div>
-                        <DatasetAssertionDescription
-                            description={description}
-                            assertionInfo={record.datasetAssertionInfo}
-                        />
+                        {record.datasetAssertionInfo ? (
+                            <DatasetAssertionDescription
+                                description={description}
+                                assertionInfo={record.datasetAssertionInfo}
+                            />
+                        ) : (
+                            <AssertionDescriptionContainer>
+                                {description ?? 'No description provided'}
+                            </AssertionDescriptionContainer>
+                        )}
+
                         {(isPartOfContract && entityData?.urn && (
                             <Tooltip
                                 title={
@@ -175,7 +197,7 @@ export const DatasetAssertionsList = ({
                                             to={`${entityRegistry.getEntityUrl(
                                                 EntityType.Dataset,
                                                 entityData.urn,
-                                            )}/Validation/Data Contract`}
+                                            )}/Quality/Data Contract`}
                                             style={{ color: REDESIGN_COLORS.BLUE }}
                                         >
                                             view
@@ -187,7 +209,7 @@ export const DatasetAssertionsList = ({
                                     to={`${entityRegistry.getEntityUrl(
                                         EntityType.Dataset,
                                         entityData.urn,
-                                    )}/Validation/Data Contract`}
+                                    )}/Quality/Data Contract`}
                                 >
                                     <DataContractLogo />
                                 </Link>
@@ -202,9 +224,9 @@ export const DatasetAssertionsList = ({
             title: '',
             dataIndex: '',
             key: '',
-            render: (_, record: any) => (
-                <>
-                    {showMenu && (
+            render: (_, record: any) => {
+                return (
+                    showMenu && (
                         <ActionButtonContainer>
                             <Tooltip
                                 title={
@@ -231,13 +253,13 @@ export const DatasetAssertionsList = ({
                             <Button onClick={() => onDeleteAssertion(record.urn)} type="text" shape="circle" danger>
                                 <DeleteOutlined />
                             </Button>
-                            <Dropdown overlay={<AssertionMenu urn={record.urn} />} trigger={['click']}>
+                            <Dropdown menu={{ items: assertionMenuItems(record.urn) }} trigger={['click']}>
                                 <StyledMoreOutlined />
                             </Dropdown>
                         </ActionButtonContainer>
-                    )}
-                </>
-            ),
+                    )
+                );
+            },
         },
     ];
 
